@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="assets/bootstrap-5.2.0/css/bootstrap.min.css">
+</head>
+<body>
+<div id="test">
+    <h3 class="text-center text-uppercase">To do lists</h3>
+    <div class="mb-3">
+        <label class="form-label">Pizza Name</label>
+        <input type="text" class="form-control" placeholder="Enter pizza name" v-model="pizzaData.name">
+        <small class="text-danger" v-if="validation.nameStatus">Pizza Name is required</small>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Pizza Price</label>
+        <input type="number" class="form-control" placeholder="Enter pizza price" v-model="pizzaData.price">
+        <small class="text-danger" v-if="validation.priceStatus">Pizza Price is required</small>
+    </div>
+    <button @click="create()" class="btn btn-outline-primary mb-1">Add</button>
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        <tbody>
+        <tr v-for="item in items">
+            <td>{{ item.id}}</td>
+            <td>{{ item.name}}</td>
+            <td>{{item.price}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script src="assets/bootstrap-5.2.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    let app = new Vue({
+        el: "#test",
+        data:{
+            pizzaData: {
+                name: "",
+                price: ""
+            },
+            items: [
+                
+            ],
+            validation: {
+                nameStatus: false,
+                priceStatus: false
+            }
+        },
+        methods: {
+            create(){
+                // if (this.pizzaData.name == ""){
+                //     this.validation.nameStatus = true
+                // }else {
+                //     this.validation.nameStatus = false
+                // }
+
+                // if (this.pizzaData.price == ""){
+                //     this.validation.priceStatus = true
+                // }else {
+                //     this.validation.priceStatus = false
+                // }
+                this.validateCheck()
+                if (!this.validation.nameStatus && !this.validation.priceStatus){
+                    this.items.push({
+                        id: this.items.length+1,
+                        name: this.pizzaData.name,
+                        price: this.pizzaData.price
+                    })
+                    this.clear();
+                }
+            },
+            validateCheck(){
+                this.validation.nameStatus = this.pizzaData.name == "" ? true: false;
+                this.validation.priceStatus = this.pizzaData.price == "" ? true: false;
+            },
+            clear(){
+                this.pizzaData.name =""
+                this.pizzaData.price = ""
+            }
+        }
+    })
+</script>
+</body>
+</html>

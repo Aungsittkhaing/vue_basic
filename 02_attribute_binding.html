@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Attribute Binding</title>
+    <style>
+        .red-color {
+            color: red;
+        }
+        .delete{
+            text-decoration: line-through;
+        }
+        img{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <input type="text" v-model="message">
+    <h2 :class="[textRed, deleteMessage]">{{message}}</h2>
+    <a :href="myUrl" target="_blank">Youtube</a>
+    <img :src="myImg" alt="">
+    <span :title="myTitle">ASK</span>
+    <input type="text" :disabled="status">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+<script>
+    let app = new Vue({
+        el: ".app",
+        data: {
+            message: "this is attribute testing",
+            textRed: "red-color",
+            deleteMessage: "delete",
+            myUrl: "https://www.youtube.com",
+            myImg: "image/Me.JPG",
+            myTitle: "aungsittkhaing",
+            status: false
+        }
+    })
+</script>
+</body>
+</html>

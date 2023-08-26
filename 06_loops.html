@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Looping</title>
+</head>
+<body>
+<div id="test">
+    <ul>
+        <li v-for="(item, index) in numbers">{{ index}}|{{ item }}</li>
+    </ul>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+        </tr>
+        <tbody>
+        <tr v-for="item in items">
+            <td>{{ item.id}}</td>
+            <td>{{ item.name}}</td>
+            <td>{{item.gender}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: "#test",
+        data:{
+            message: "",
+            numbers: ["one","two","three"],
+            items:[{
+                id: "1",
+                name: "ask",
+                gender: "male"
+            },
+                {
+                    id: "2",
+                    name: "abm",
+                    gender: "male"
+                },
+                {
+                    id: "3",
+                    name: "chothet",
+                    gender: "female"
+                }
+            ]
+        }
+    })
+</script>
+</body>
+</html>
